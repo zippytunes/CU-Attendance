@@ -320,7 +320,7 @@ function easterServiceColor(label) {
 }
 
 async function loadData() {
-  const res = await fetch("data/report.json", { cache: "no-store" });
+  const res = await fetch("data/report.json?v=15", { cache: "no-store" });
   if (!res.ok) throw new Error("Could not load data/report.json. Run scripts/rebuild_report.py first.");
   return res.json();
 }
