@@ -1,0 +1,150 @@
+date,year,event_type,service_label,in_person,online,boxcast,youtube,facebook,notes
+2025-12-24,2025,christmas_eve,2PM - T,279,,,,,
+2025-12-24,2025,christmas_eve,4PM - T,319,,,,,
+2025-12-24,2025,christmas_eve,4PM - C,453,,,,,
+2025-12-24,2025,christmas_eve,6PM - C,155,,,,,
+2025-12-24,2025,christmas_eve,8PM - T,309,,,,,
+2025-12-24,2025,christmas_eve,11PM - T,100,,,,,
+2025-12-24,2025,christmas_eve,2PM Y,,62,,62,,youtube
+2025-12-24,2025,christmas_eve,6PM - Y,,94,,94,,youtube
+2025-12-24,2025,christmas_eve,8PM - Y,,87,,87,,youtube
+2025-12-24,2025,christmas_eve,11PM - Y,,70,,70,,youtube
+2025-12-24,2025,christmas_eve,2PM,,1,1,,,boxcast
+2025-12-24,2025,christmas_eve,4PM,,14,14,,,boxcast
+2025-12-24,2025,christmas_eve,6PM,,7,7,,,boxcast
+2025-12-24,2025,christmas_eve,8PM,,15,15,,,boxcast
+2025-12-24,2025,christmas_eve,11PM,,8,8,,,boxcast
+2025-12-24,2025,christmas_eve,TOTAL_IN_PERSON,1973,,,,,sheet total row
+2024-12-24,2024,christmas_eve,2PM - T,206,,,,,
+2024-12-24,2024,christmas_eve,2PM - C,137,,,,,
+2024-12-24,2024,christmas_eve,4PM - C,512,,,,,
+2024-12-24,2024,christmas_eve,8PM - T,434,,,,,
+2024-12-24,2024,christmas_eve,11PM - T,113,,,,,
+2024-12-24,2024,christmas_eve,2PM - Y(T),,44,,44,,youtube
+2024-12-24,2024,christmas_eve,4PM - Y,,92,,92,,youtube
+2024-12-24,2024,christmas_eve,8PM - Y,,34,,34,,youtube
+2024-12-24,2024,christmas_eve,11PM - Y,,23,,23,,youtube
+2024-12-24,2024,christmas_eve,2PM -B (T),,206,206,,,boxcast
+2024-12-24,2024,christmas_eve,4PM - B,,15,15,,,boxcast
+2024-12-24,2024,christmas_eve,8PM - B,,22,22,,,boxcast
+2024-12-24,2024,christmas_eve,11PM - B,,0,0,,,boxcast
+2024-12-24,2024,christmas_eve,TOTAL_IN_PERSON,1838,,,,,sheet total row
+2023-12-24,2023,christmas_eve,9AM - T,233,,,,,
+2023-12-24,2023,christmas_eve,11AM - C,224,,,,,
+2023-12-24,2023,christmas_eve,2PM - C,133,,,,,
+2023-12-24,2023,christmas_eve,4PM - C,481,,,,,
+2023-12-24,2023,christmas_eve,8PM - T,328,,,,,
+2023-12-24,2023,christmas_eve,11PM - T,111,,,,,
+2023-12-24,2023,christmas_eve,9AM - T,,99,,99,,youtube
+2023-12-24,2023,christmas_eve,11AM - C,,92,,92,,youtube
+2023-12-24,2023,christmas_eve,2PM - C,,87,,87,,youtube
+2023-12-24,2023,christmas_eve,4PM - C,,144,,144,,youtube
+2023-12-24,2023,christmas_eve,8PM - T,,64,,64,,youtube
+2023-12-24,2023,christmas_eve,11PM - T,,69,,69,,youtube
+2023-12-24,2023,christmas_eve,9AM - T,,40,40,,,boxcast
+2023-12-24,2023,christmas_eve,11AM - C,,23,23,,,boxcast
+2023-12-24,2023,christmas_eve,2PM - C,,8,8,,,boxcast
+2023-12-24,2023,christmas_eve,4PM - C,,13,13,,,boxcast
+2023-12-24,2023,christmas_eve,8PM - T,,17,17,,,boxcast
+2023-12-24,2023,christmas_eve,11PM - T,,3,3,,,boxcast
+2023-12-24,2023,christmas_eve,9AM - T,,25,,,25,facebook
+2023-12-24,2023,christmas_eve,11AM - C,,32,,,32,facebook
+2023-12-24,2023,christmas_eve,2PM - C,,31,,,31,facebook
+2023-12-24,2023,christmas_eve,4PM - C,,12,,,12,facebook
+2023-12-24,2023,christmas_eve,8PM - T,,4,,,4,facebook
+2023-12-24,2023,christmas_eve,11PM - T,,5,,,5,facebook
+2023-12-24,2023,christmas_eve,TOTAL_IN_PERSON,2278,,,,,sheet total row
+2022-12-24,2022,christmas_eve,2PM,361,,,,,
+2022-12-24,2022,christmas_eve,4PM,350,,,,,
+2022-12-24,2022,christmas_eve,6PM,188,,,,,
+2022-12-24,2022,christmas_eve,8PM,293,,,,,
+2022-12-24,2022,christmas_eve,11PM,66,,,,,
+2022-12-24,2022,christmas_eve,2PM,,40,,40,,youtube
+2022-12-24,2022,christmas_eve,4PM,,63,,63,,youtube
+2022-12-24,2022,christmas_eve,6PM,,59,,59,,youtube
+2022-12-24,2022,christmas_eve,8PM,,65,,65,,youtube
+2022-12-24,2022,christmas_eve,11PM,,31,,31,,youtube
+2022-12-24,2022,christmas_eve,2PM,,22,22,,,boxcast
+2022-12-24,2022,christmas_eve,4PM,,23,23,,,boxcast
+2022-12-24,2022,christmas_eve,6PM,,20,20,,,boxcast
+2022-12-24,2022,christmas_eve,8PM,,28,28,,,boxcast
+2022-12-24,2022,christmas_eve,11PM,,8,8,,,boxcast
+2022-12-24,2022,christmas_eve,2PM,,0,,,0,facebook
+2022-12-24,2022,christmas_eve,4PM,,10,,,10,facebook
+2022-12-24,2022,christmas_eve,6PM,,4,,,4,facebook
+2022-12-24,2022,christmas_eve,8PM,,11,,,11,facebook
+2022-12-24,2022,christmas_eve,11PM,,8,,,8,facebook
+2022-12-24,2022,christmas_eve,TOTAL_IN_PERSON,1650,,,,,sheet total row
+2021-12-24,2021,christmas_eve,2PM,229,,,,,
+2021-12-24,2021,christmas_eve,6PM,188,,,,,
+2021-12-24,2021,christmas_eve,8PM,288,,,,,
+2021-12-24,2021,christmas_eve,11PM,96,,,,,
+2021-12-24,2021,christmas_eve,2PM,,58,,58,,youtube
+2021-12-24,2021,christmas_eve,4PM,,86,,86,,youtube
+2021-12-24,2021,christmas_eve,6PM,,88,,88,,youtube
+2021-12-24,2021,christmas_eve,8PM,,79,,79,,youtube
+2021-12-24,2021,christmas_eve,11PM,,29,,29,,youtube
+2021-12-24,2021,christmas_eve,2PM,,13,13,,,boxcast
+2021-12-24,2021,christmas_eve,4PM,,22,22,,,boxcast
+2021-12-24,2021,christmas_eve,6PM,,23,23,,,boxcast
+2021-12-24,2021,christmas_eve,8PM,,36,36,,,boxcast
+2021-12-24,2021,christmas_eve,11PM,,17,17,,,boxcast
+2021-12-24,2021,christmas_eve,2PM,,28,,,28,facebook
+2021-12-24,2021,christmas_eve,4PM,,19,,,19,facebook
+2021-12-24,2021,christmas_eve,6PM,,26,,,26,facebook
+2021-12-24,2021,christmas_eve,8PM,,13,,,13,facebook
+2021-12-24,2021,christmas_eve,11PM,,0,,,0,facebook
+2021-12-24,2021,christmas_eve,TOTAL_IN_PERSON,1338,,,,,sheet total row
+2021-04-04,2021,easter,TOTAL_IN_PERSON,735,658,,,,from weekly sheet
+2021-04-04,2021,easter,9AM Traditional,147,,,,,
+2021-04-04,2021,easter,9AM Contemporary,169,,,,,
+2021-04-04,2021,easter,11AM Traditional,177,,,,,
+2021-04-04,2021,easter,11AM Contemporary,204,,,,,
+2021-04-04,2021,easter,Kids Worship 11AM,38,,,,,
+2022-04-17,2022,easter,TOTAL_IN_PERSON,1281,,,,,from weekly sheet
+2022-04-17,2022,easter,11AM Traditional,570,,,,,
+2022-04-17,2022,easter,11AM Contemporary,711,,,,,
+2023-04-09,2023,easter,TOTAL_IN_PERSON,1387,359,,,,from weekly sheet
+2023-04-09,2023,easter,9AM Traditional,292,,,,,
+2023-04-09,2023,easter,9AM Contemporary,305,,,,,
+2023-04-09,2023,easter,11AM Traditional,340,,,,,
+2023-04-09,2023,easter,11AM Contemporary,450,,,,,
+2024-03-31,2024,easter,TOTAL_IN_PERSON,1440,320,,,,from weekly sheet
+2024-03-31,2024,easter,9AM Traditional,267,,,,,
+2024-03-31,2024,easter,9AM Contemporary,272,,,,,
+2024-03-31,2024,easter,11AM Traditional,350,,,,,
+2024-03-31,2024,easter,11AM Contemporary,551,,,,,
+2024-03-31,2024,easter,Kids Worship 11AM,0,,,,,
+2025-04-20,2025,easter,TOTAL_IN_PERSON,1283,338,,,,from weekly sheet
+2025-04-20,2025,easter,9AM Traditional,416,,,,,
+2025-04-20,2025,easter,9AM Contemporary,330,,,,,
+2025-04-20,2025,easter,11AM Traditional,271,,,,,
+2025-04-20,2025,easter,11AM Contemporary,266,,,,,
+2025-04-20,2025,easter,Kids Worship 11AM,0,,,,,
+2026-04-05,2026,easter,TOTAL_IN_PERSON,1386,385,,,,from weekly sheet
+2026-04-05,2026,easter,9AM Traditional,297,,,,,
+2026-04-05,2026,easter,9AM Contemporary,192,,,,,
+2026-04-05,2026,easter,11AM Traditional,370,,,,,
+2026-04-05,2026,easter,11AM Contemporary,527,,,,,
+2026-04-05,2026,easter,Kids Worship 11AM,0,,,,,
+2021-03-01,2021,holy_week,Monday Noon,0,,,,,
+2021-03-01,2021,holy_week,Tuesday Noon,0,,,,,
+2021-03-01,2021,holy_week,Wednesday Noon,0,,,,,
+2021-03-01,2021,holy_week,Maundy Thursday,66,,,,,
+2021-03-01,2021,holy_week,Good Friday,43,,,,,
+2022-03-01,2022,holy_week,Stations of the Cross,74,,,,,
+2022-03-01,2022,holy_week,Maundy Thursday,152,,,,,
+2022-03-01,2022,holy_week,Good Friday,179,,,,,
+2023-03-01,2023,holy_week,Stations fo the Cross,89,,,,,
+2023-03-01,2023,holy_week,Maundy Thursday,158,,,,,
+2023-03-01,2023,holy_week,Good Friday,140,,,,,
+2024-03-01,2024,holy_week,Stations of the Cross,81,,,,,
+2024-03-01,2024,holy_week,Maundy Thursday,162,,,,,
+2024-03-01,2024,holy_week,Good Friday,173,,,,,
+2025-02-01,2025,ash_wednesday,Noon,83,,,,,Ash Wednesday 2025
+2025-03-01,2025,holy_week,Stations of the Cross,124,,,,,
+2025-03-01,2025,holy_week,Maundy Thursday,137,81,13,68,,
+2025-03-01,2025,holy_week,Good Friday,156,81,14,67,,
+2026-03-01,2026,holy_week,Stations of the Cross,105,,,,,
+2026-03-01,2026,holy_week,Maundy Thursday,104,52,,52,,
+2026-03-01,2026,holy_week,Good Friday,218,70,,70,,

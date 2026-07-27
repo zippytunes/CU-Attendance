@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Concord United — Worship Attendance Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/report.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand-row">
+        <img class="brand-logo" src="img/logo-concord.png" alt="Concord United Methodist Church" />
+        <div>
+          <h1>Worship Attendance Report</h1>
+          <p class="lede" id="header-range">Sunday attendance from the church office records — ordinary weeks, seasonal rhythm, and holiday facts.</p>
+        </div>
+      </div>
+      <nav class="toc" aria-label="Report sections">
+        <a href="#overview">Overview</a>
+        <a href="#explore-year">Explore a year</a>
+        <a href="#explore-month">Explore a month</a>
+        <a href="#rhythm">Rhythm of the year</a>
+        <a href="#easter">Easter</a>
+        <a href="#christmas">Christmas Eve</a>
+        <a href="#streaming">Streaming</a>
+        <a href="#notes">Data notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="overview" class="panel">
+      <h2>Where attendance stands</h2>
+      <p class="section-intro">
+        Averages are for regular Sundays. Snow closures, Christmas Eve, and Christmas Day on Sunday are excluded from averages. Easter and the Sunday after Christmas stay in.
+      </p>
+      <div class="stat-grid" id="topline-stats"></div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3 id="weekly-chart-title">Sunday attendance, week by week · Jan 2021 to current</h3>
+          <button type="button" class="scope-tag" id="overview-scope-tag" aria-pressed="false" title="Toggle online viewing on this chart">In person only</button>
+        </div>
+        <div class="toolbar" id="overview-toggles" role="group" aria-label="Series">
+          <button type="button" class="chip active" data-series="in_person">In person</button>
+          <button type="button" class="chip" data-series="traditional">Traditional</button>
+          <button type="button" class="chip" data-series="contemporary">Contemporary</button>
+          <button type="button" class="chip" data-series="kids">Kids 11am</button>
+        </div>
+        <canvas id="chart-weekly" height="120"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Yearly Sunday averages</h3>
+          <button type="button" class="scope-tag" id="yearly-scope-tag" aria-pressed="false" title="Toggle online viewing on this chart">In person only</button>
+        </div>
+        <div class="toolbar" id="yearly-toggles" role="group" aria-label="Yearly series">
+          <button type="button" class="chip active" data-yearly="in_person">In person</button>
+          <button type="button" class="chip" data-yearly="traditional">Traditional</button>
+          <button type="button" class="chip" data-yearly="contemporary">Contemporary</button>
+          <button type="button" class="chip" data-yearly="kids">Kids 11am</button>
+        </div>
+        <canvas id="chart-yearly" height="100"></canvas>
+      </div>
+    </section>
+
+    <section id="explore-year" class="panel">
+      <h2>Explore a year</h2>
+      <p class="section-intro">Pick a year to see its Sundays, averages, and service breakdown.</p>
+      <div class="toolbar" id="year-tabs" role="tablist" aria-label="Year"></div>
+      <div class="stat-grid compact" id="year-stats"></div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3 id="year-weekly-title">Weekly attendance</h3>
+          <button type="button" class="scope-tag" id="year-scope-tag" aria-pressed="false" title="Toggle online viewing on this chart">In person only</button>
+        </div>
+        <div class="toolbar" id="year-series-toggles">
+          <button type="button" class="chip active" data-yseries="in_person">In person</button>
+          <button type="button" class="chip" data-yseries="traditional">Traditional</button>
+          <button type="button" class="chip" data-yseries="contemporary">Contemporary</button>
+          <button type="button" class="chip" data-yseries="kids">Kids 11am</button>
+        </div>
+        <canvas id="chart-year-weekly" height="120"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3 id="year-hour-title">Breakdown by service</h3>
+        </div>
+        <div class="toolbar" id="year-hour-tabs" role="tablist" aria-label="Year for breakdown"></div>
+        <canvas id="chart-year-hours" height="100"></canvas>
+      </div>
+    </section>
+
+    <section id="explore-month" class="panel">
+      <h2>Explore a month</h2>
+      <p class="section-intro">Choose a year, month, and service view.</p>
+      <div class="month-controls">
+        <label>
+          Year
+          <select id="month-year"></select>
+        </label>
+        <label>
+          Month
+          <select id="month-month"></select>
+        </label>
+        <label>
+          Service
+          <select id="month-service">
+            <option value="in_person">In person</option>
+            <option value="traditional">Traditional</option>
+            <option value="contemporary">Contemporary</option>
+            <option value="kids">Kids 11am</option>
+          </select>
+        </label>
+      </div>
+      <div class="stat-grid compact" id="month-stats"></div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3 id="month-weekly-title">Sundays in this month</h3>
+          <button type="button" class="scope-tag" id="month-scope-tag" aria-pressed="false" title="Toggle online viewing on this chart">In person only</button>
+        </div>
+        <canvas id="chart-month-weekly" height="120"></canvas>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3 id="month-hour-title">Breakdown by service</h3>
+        </div>
+        <div class="month-controls compact-controls">
+          <label>
+            Year
+            <select id="month-hour-year"></select>
+          </label>
+          <label>
+            Month
+            <select id="month-hour-month"></select>
+          </label>
+        </div>
+        <canvas id="chart-month-hours" height="100"></canvas>
+      </div>
+    </section>
+
+    <section id="rhythm" class="panel">
+      <div class="section-head">
+        <div>
+          <h2>The rhythm of the year</h2>
+          <p class="section-intro">
+            In-person attendance often softens after school lets out in late May and climbs again when school resumes in early August.
+            Click a year chip to show or hide that year.
+          </p>
+        </div>
+      </div>
+      <div class="rhythm-controls">
+        <div class="toolbar" id="rhythm-year-toggles" aria-label="Show or hide years"></div>
+        <label>
+          By service
+          <select id="rhythm-service">
+            <option value="in_person">In person</option>
+            <option value="traditional">Traditional</option>
+            <option value="contemporary">Contemporary</option>
+            <option value="kids">Kids 11am</option>
+          </select>
+        </label>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3 id="rhythm-title">Average in-person attendance by month</h3>
+          <button type="button" class="scope-tag" id="rhythm-scope-tag" aria-pressed="false" title="Toggle online viewing on this chart">In person only</button>
+        </div>
+        <canvas id="chart-rhythm" height="140"></canvas>
+      </div>
+    </section>
+
+    <section id="easter" class="panel">
+      <h2>Easter</h2>
+      <p class="section-intro">Easter Sunday totals by year — Easter is included in weekly averages.</p>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Easter Sunday attendance by year</h3>
+          <button type="button" class="scope-tag" id="easter-scope-tag" aria-pressed="false" title="Toggle online viewing on this chart">In person only</button>
+        </div>
+        <canvas id="chart-easter" height="110"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Breakdown by service</h3>
+        <div class="toolbar" id="easter-year-tabs"></div>
+        <canvas id="chart-easter-services" height="100"></canvas>
+      </div>
+    </section>
+
+    <section id="christmas" class="panel">
+      <h2>Christmas Eve</h2>
+      <p class="section-intro">Christmas Eve in-person totals and service times by year — data only.</p>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Christmas Eve attendance by year</h3>
+          <button type="button" class="scope-tag" id="xmas-scope-tag" aria-pressed="false" title="Toggle online viewing on this chart">In person only</button>
+        </div>
+        <canvas id="chart-xmas-totals" height="110"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Breakdown by service</h3>
+        <div class="toolbar" id="xmas-year-tabs"></div>
+        <canvas id="chart-xmas-services" height="120"></canvas>
+      </div>
+    </section>
+
+    <section id="streaming" class="panel">
+      <h2>Streaming</h2>
+      <p class="section-intro">
+        Online viewing is part of Concord’s reach and is shown here as secondary context.
+        Figures come from the office’s recorded Boxcast, YouTube, and Facebook counts on the weekly sheet.
+      </p>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Average online viewing per Sunday, by platform</h3>
+          <span class="scope-tag">Online only</span>
+        </div>
+        <canvas id="chart-streaming" height="110"></canvas>
+      </div>
+    </section>
+
+    <section id="notes" class="panel">
+      <h2>Data notes</h2>
+      <ul class="notes-list" id="notes-list"></ul>
+      <p class="update-hint">
+        To update this report: edit <code>data/weekly_attendance.csv</code>, run
+        <code>python3 scripts/rebuild_report.py</code>, then refresh this page.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p id="footer-meta"></p>
+    </div>
+  </footer>
+
+  <script src="js/report.js?v=10"></script>
+</body>
+</html>
