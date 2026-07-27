@@ -430,6 +430,26 @@ def build_rhythm(rows: list[dict]) -> dict:
     }
 
 
+def _normalize_holy_label(label: str) -> str:
+    s = (label or "").strip()
+    low = s.lower().replace("fo the", "of the")
+    if "station" in low:
+        return "Stations of the Cross"
+    if "maundy" in low or "holy thursday" in low:
+        return "Maundy Thursday"
+    if "good friday" in low:
+        return "Good Friday"
+    return s
+
+
+def _is_core_holy_service(label: str) -> bool:
+    return _normalize_holy_label(label) in {
+        "Stations of the Cross",
+        "Maundy Thursday",
+        "Good Friday",
+    }
+
+
 def build_holidays(specials: list[dict], weeks: list[dict]) -> dict:
     easter = []
     by_year_easter = defaultdict(list)
@@ -486,8 +506,56 @@ def build_holidays(specials: list[dict], weeks: list[dict]) -> dict:
             }
         )
 
-    holy = [s for s in specials if s["event_type"] == "holy_week"]
-    return {"easter": easter, "christmas_eve": xmas, "holy_week": holy}
+    ash = []
+    by_year_ash = defaultdict(list)
+    for s in specials:
+        if s["event_type"] == "ash_wednesday":
+            by_year_ash[s["year"]].append(s)
+    for y in sorted(k for k in by_year_ash if k):
+        services = by_year_ash[y]
+        vals = [i["in_person"] for i in services if i.get("in_person") is not None]
+        ash.append(
+            {
+                "year": y,
+                "date": services[0]["date"],
+                "in_person_total": sum(vals) if vals else None,
+                "services": services,
+            }
+        )
+
+    holy = []
+    by_year_holy = defaultdict(list)
+    for s in specials:
+        if s["event_type"] == "holy_week" and _is_core_holy_service(s.get("service_label") or ""):
+            row = dict(s)
+            row["service_label"] = _normalize_holy_label(s["service_label"])
+            by_year_holy[s["year"]].append(row)
+    service_order = ["Stations of the Cross", "Maundy Thursday", "Good Friday"]
+    for y in sorted(k for k in by_year_holy if k):
+        items = by_year_holy[y]
+        by_label = {i["service_label"]: i for i in items}
+        services = []
+        for lab in service_order:
+            if lab in by_label:
+                services.append(by_label[lab])
+        for i in items:
+            if i["service_label"] not in service_order:
+                services.append(i)
+        vals = [i["in_person"] for i in services if i.get("in_person") is not None]
+        holy.append(
+            {
+                "year": y,
+                "services": services,
+                "in_person_total": sum(vals) if vals else None,
+            }
+        )
+
+    return {
+        "ash_wednesday": ash,
+        "holy_week": holy,
+        "easter": easter,
+        "christmas_eve": xmas,
+    }
 
 
 def build_streaming(rows: list[dict]) -> dict:
@@ -543,6 +611,8 @@ def main():
                 "weather cancellations (full snow closures)",
                 "Christmas Eve (even when it falls on Sunday)",
                 "Christmas Day when it falls on Sunday",
+                "Ash Wednesday",
+                "Holy Week services (Stations, Maundy Thursday, Good Friday)",
             ],
             "averages_include": [
                 "Easter Sunday",
@@ -559,11 +629,13 @@ def main():
         "data_notes": [
             "Source: church secretary Attendance - Worship.xlsx (canonical) and Christmas Eve Attendance.xlsx.",
             "Ordinary-Sunday averages exclude full snow closures, Christmas Eve, and Christmas Day when it falls on Sunday.",
+            "Ash Wednesday and Holy Week (Stations of the Cross, Maundy Thursday, Good Friday) are shown as facts only — not included in Sunday averages.",
             "Easter Sunday and the Sunday after Christmas are included in weekly averages.",
             "Kids Worship (11 AM) is included in in-person totals.",
             "Jan–Feb 2021 used a COVID-era service schedule; side-by-side 9/11 comparisons start March 2021.",
             "Online figures are office-recorded Boxcast / YouTube / Facebook counts from the weekly sheet.",
             "Date header typos repaired on import where known (e.g. 1/18/25/26 → Jan 18 2026).",
+            "Holy Week / Ash Wednesday coverage is incomplete in the office sheet (Ash Wednesday currently recorded for 2025 only; 2021 lists Maundy/Good Friday without Stations).",
             "Edit data/weekly_attendance.csv then run python3 scripts/rebuild_report.py to refresh this report.",
             "Christmas Eve in-person totals are summed from labeled service rows (not the sheet TOTALS row, which can include online).",
         ],

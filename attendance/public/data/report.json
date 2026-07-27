@@ -6,7 +6,9 @@
     "averages_exclude": [
       "weather cancellations (full snow closures)",
       "Christmas Eve (even when it falls on Sunday)",
-      "Christmas Day when it falls on Sunday"
+      "Christmas Day when it falls on Sunday",
+      "Ash Wednesday",
+      "Holy Week services (Stations, Maundy Thursday, Good Friday)"
     ],
     "averages_include": [
       "Easter Sunday",
@@ -37514,6 +37516,281 @@
     "note": "Monthly averages exclude snow closures, Christmas Eve, and Christmas Day on Sunday. Easter and the Sunday after Christmas stay in."
   },
   "holidays": {
+    "ash_wednesday": [
+      {
+        "year": 2025,
+        "date": "2025-02-01",
+        "in_person_total": 321,
+        "services": [
+          {
+            "date": "2025-02-01",
+            "year": 2025,
+            "event_type": "ash_wednesday",
+            "service_label": "Noon",
+            "in_person": 83,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": "Ash Wednesday 2025"
+          },
+          {
+            "date": "2025-02-01",
+            "year": 2025,
+            "event_type": "ash_wednesday",
+            "service_label": "6:30",
+            "in_person": 238,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": "Ash Wednesday 2025"
+          }
+        ]
+      }
+    ],
+    "holy_week": [
+      {
+        "year": 2021,
+        "services": [
+          {
+            "date": "2021-03-01",
+            "year": 2021,
+            "event_type": "holy_week",
+            "service_label": "Maundy Thursday",
+            "in_person": 66,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2021-03-01",
+            "year": 2021,
+            "event_type": "holy_week",
+            "service_label": "Good Friday",
+            "in_person": 43,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          }
+        ],
+        "in_person_total": 109
+      },
+      {
+        "year": 2022,
+        "services": [
+          {
+            "date": "2022-03-01",
+            "year": 2022,
+            "event_type": "holy_week",
+            "service_label": "Stations of the Cross",
+            "in_person": 74,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2022-03-01",
+            "year": 2022,
+            "event_type": "holy_week",
+            "service_label": "Maundy Thursday",
+            "in_person": 152,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2022-03-01",
+            "year": 2022,
+            "event_type": "holy_week",
+            "service_label": "Good Friday",
+            "in_person": 179,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          }
+        ],
+        "in_person_total": 405
+      },
+      {
+        "year": 2023,
+        "services": [
+          {
+            "date": "2023-03-01",
+            "year": 2023,
+            "event_type": "holy_week",
+            "service_label": "Stations of the Cross",
+            "in_person": 89,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2023-03-01",
+            "year": 2023,
+            "event_type": "holy_week",
+            "service_label": "Maundy Thursday",
+            "in_person": 158,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2023-03-01",
+            "year": 2023,
+            "event_type": "holy_week",
+            "service_label": "Good Friday",
+            "in_person": 140,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          }
+        ],
+        "in_person_total": 387
+      },
+      {
+        "year": 2024,
+        "services": [
+          {
+            "date": "2024-03-01",
+            "year": 2024,
+            "event_type": "holy_week",
+            "service_label": "Stations of the Cross",
+            "in_person": 81,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2024-03-01",
+            "year": 2024,
+            "event_type": "holy_week",
+            "service_label": "Maundy Thursday",
+            "in_person": 162,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2024-03-01",
+            "year": 2024,
+            "event_type": "holy_week",
+            "service_label": "Good Friday",
+            "in_person": 173,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          }
+        ],
+        "in_person_total": 416
+      },
+      {
+        "year": 2025,
+        "services": [
+          {
+            "date": "2025-03-01",
+            "year": 2025,
+            "event_type": "holy_week",
+            "service_label": "Stations of the Cross",
+            "in_person": 124,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2025-03-01",
+            "year": 2025,
+            "event_type": "holy_week",
+            "service_label": "Maundy Thursday",
+            "in_person": 137,
+            "online": 81,
+            "boxcast": 13,
+            "youtube": 68,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2025-03-01",
+            "year": 2025,
+            "event_type": "holy_week",
+            "service_label": "Good Friday",
+            "in_person": 156,
+            "online": 81,
+            "boxcast": 14,
+            "youtube": 67,
+            "facebook": null,
+            "notes": ""
+          }
+        ],
+        "in_person_total": 417
+      },
+      {
+        "year": 2026,
+        "services": [
+          {
+            "date": "2026-03-01",
+            "year": 2026,
+            "event_type": "holy_week",
+            "service_label": "Stations of the Cross",
+            "in_person": 105,
+            "online": null,
+            "boxcast": null,
+            "youtube": null,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2026-03-01",
+            "year": 2026,
+            "event_type": "holy_week",
+            "service_label": "Maundy Thursday",
+            "in_person": 104,
+            "online": 52,
+            "boxcast": null,
+            "youtube": 52,
+            "facebook": null,
+            "notes": ""
+          },
+          {
+            "date": "2026-03-01",
+            "year": 2026,
+            "event_type": "holy_week",
+            "service_label": "Good Friday",
+            "in_person": 218,
+            "online": 70,
+            "boxcast": null,
+            "youtube": 70,
+            "facebook": null,
+            "notes": ""
+          }
+        ],
+        "in_person_total": 427
+      }
+    ],
     "easter": [
       {
         "year": 2021,
@@ -39019,248 +39296,6 @@
           }
         ]
       }
-    ],
-    "holy_week": [
-      {
-        "date": "2021-03-01",
-        "year": 2021,
-        "event_type": "holy_week",
-        "service_label": "Monday Noon",
-        "in_person": 0,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2021-03-01",
-        "year": 2021,
-        "event_type": "holy_week",
-        "service_label": "Tuesday Noon",
-        "in_person": 0,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2021-03-01",
-        "year": 2021,
-        "event_type": "holy_week",
-        "service_label": "Wednesday Noon",
-        "in_person": 0,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2021-03-01",
-        "year": 2021,
-        "event_type": "holy_week",
-        "service_label": "Maundy Thursday",
-        "in_person": 66,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2021-03-01",
-        "year": 2021,
-        "event_type": "holy_week",
-        "service_label": "Good Friday",
-        "in_person": 43,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2022-03-01",
-        "year": 2022,
-        "event_type": "holy_week",
-        "service_label": "Stations of the Cross",
-        "in_person": 74,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2022-03-01",
-        "year": 2022,
-        "event_type": "holy_week",
-        "service_label": "Maundy Thursday",
-        "in_person": 152,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2022-03-01",
-        "year": 2022,
-        "event_type": "holy_week",
-        "service_label": "Good Friday",
-        "in_person": 179,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2023-03-01",
-        "year": 2023,
-        "event_type": "holy_week",
-        "service_label": "Stations fo the Cross",
-        "in_person": 89,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2023-03-01",
-        "year": 2023,
-        "event_type": "holy_week",
-        "service_label": "Maundy Thursday",
-        "in_person": 158,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2023-03-01",
-        "year": 2023,
-        "event_type": "holy_week",
-        "service_label": "Good Friday",
-        "in_person": 140,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2024-03-01",
-        "year": 2024,
-        "event_type": "holy_week",
-        "service_label": "Stations of the Cross",
-        "in_person": 81,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2024-03-01",
-        "year": 2024,
-        "event_type": "holy_week",
-        "service_label": "Maundy Thursday",
-        "in_person": 162,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2024-03-01",
-        "year": 2024,
-        "event_type": "holy_week",
-        "service_label": "Good Friday",
-        "in_person": 173,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2025-03-01",
-        "year": 2025,
-        "event_type": "holy_week",
-        "service_label": "Stations of the Cross",
-        "in_person": 124,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2025-03-01",
-        "year": 2025,
-        "event_type": "holy_week",
-        "service_label": "Maundy Thursday",
-        "in_person": 137,
-        "online": 81,
-        "boxcast": 13,
-        "youtube": 68,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2025-03-01",
-        "year": 2025,
-        "event_type": "holy_week",
-        "service_label": "Good Friday",
-        "in_person": 156,
-        "online": 81,
-        "boxcast": 14,
-        "youtube": 67,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2026-03-01",
-        "year": 2026,
-        "event_type": "holy_week",
-        "service_label": "Stations of the Cross",
-        "in_person": 105,
-        "online": null,
-        "boxcast": null,
-        "youtube": null,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2026-03-01",
-        "year": 2026,
-        "event_type": "holy_week",
-        "service_label": "Maundy Thursday",
-        "in_person": 104,
-        "online": 52,
-        "boxcast": null,
-        "youtube": 52,
-        "facebook": null,
-        "notes": ""
-      },
-      {
-        "date": "2026-03-01",
-        "year": 2026,
-        "event_type": "holy_week",
-        "service_label": "Good Friday",
-        "in_person": 218,
-        "online": 70,
-        "boxcast": null,
-        "youtube": 70,
-        "facebook": null,
-        "notes": ""
-      }
     ]
   },
   "streaming": {
@@ -39312,11 +39347,13 @@
   "data_notes": [
     "Source: church secretary Attendance - Worship.xlsx (canonical) and Christmas Eve Attendance.xlsx.",
     "Ordinary-Sunday averages exclude full snow closures, Christmas Eve, and Christmas Day when it falls on Sunday.",
+    "Ash Wednesday and Holy Week (Stations of the Cross, Maundy Thursday, Good Friday) are shown as facts only \u2014 not included in Sunday averages.",
     "Easter Sunday and the Sunday after Christmas are included in weekly averages.",
     "Kids Worship (11 AM) is included in in-person totals.",
     "Jan\u2013Feb 2021 used a COVID-era service schedule; side-by-side 9/11 comparisons start March 2021.",
     "Online figures are office-recorded Boxcast / YouTube / Facebook counts from the weekly sheet.",
     "Date header typos repaired on import where known (e.g. 1/18/25/26 \u2192 Jan 18 2026).",
+    "Holy Week / Ash Wednesday coverage is incomplete in the office sheet (Ash Wednesday currently recorded for 2025 only; 2021 lists Maundy/Good Friday without Stations).",
     "Edit data/weekly_attendance.csv then run python3 scripts/rebuild_report.py to refresh this report.",
     "Christmas Eve in-person totals are summed from labeled service rows (not the sheet TOTALS row, which can include online)."
   ]

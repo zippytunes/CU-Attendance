@@ -25,6 +25,8 @@
         <a href="#explore-year">Explore a year</a>
         <a href="#explore-month">Explore a month</a>
         <a href="#rhythm">Rhythm of the year</a>
+        <a href="#ash-wednesday">Ash Wednesday</a>
+        <a href="#holy-week">Holy Week</a>
         <a href="#easter">Easter</a>
         <a href="#christmas">Christmas Eve</a>
         <a href="#streaming">Streaming</a>
@@ -178,6 +180,41 @@
       </div>
     </section>
 
+    <section id="ash-wednesday" class="panel">
+      <h2>Ash Wednesday</h2>
+      <p class="section-intro">
+        Ash Wednesday in-person attendance by year — facts only, not included in Sunday averages.
+        Coverage in the office sheet is limited so far.
+      </p>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Ash Wednesday in-person totals by year</h3>
+          <span class="scope-tag">In person only</span>
+        </div>
+        <canvas id="chart-ash" height="110"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3>Breakdown by service</h3>
+        <div class="toolbar" id="ash-year-tabs"></div>
+        <canvas id="chart-ash-services" height="100"></canvas>
+      </div>
+    </section>
+
+    <section id="holy-week" class="panel">
+      <h2>Holy Week</h2>
+      <p class="section-intro">
+        Stations of the Cross, Maundy Thursday, and Good Friday — facts only, not included in Sunday averages.
+        Years vary in which services were recorded.
+      </p>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Holy Week in-person attendance by year</h3>
+          <span class="scope-tag">In person only</span>
+        </div>
+        <canvas id="chart-holy-week" height="130"></canvas>
+      </div>
+    </section>
+
     <section id="easter" class="panel">
       <h2>Easter</h2>
       <p class="section-intro">Easter Sunday totals by year — Easter is included in weekly averages.</p>
@@ -243,6 +280,6 @@
     </div>
   </footer>
 
-  <script src="js/report.js?v=10"></script>
+  <script src="js/report.js?v=13"></script>
 </body>
 </html>

@@ -609,26 +609,32 @@ def import_easter_from_weekly(weeks: list[dict]) -> list[dict]:
 def import_holy_week(ws) -> list[dict]:
     events = []
     current_year = None
+    ash_year = None
     for r in range(1, (ws.max_row or 0) + 1):
         a = ws.cell(r, 1).value
+        b = ws.cell(r, 2).value
         if isinstance(a, str) and "HOLY WEEK" in a.upper():
+            ash_year = None
             m = re.search(r"(20\d{2})", a)
             if m:
                 current_year = int(m.group(1))
             continue
         if isinstance(a, str) and "ASH WEDNESDAY" in a.upper():
             m = re.search(r"(20\d{2})", a)
-            y = int(m.group(1)) if m else current_year
-            if y:
+            ash_year = int(m.group(1)) if m else current_year
+            current_year = None
+            label = str(b).strip() if b is not None else "Ash Wednesday"
+            if hasattr(b, "hour"):
+                label = f"{b.hour}:{b.minute:02d}"
+            ip = to_num(ws.cell(r, 3).value)
+            if ash_year and isinstance(ip, int):
                 events.append(
                     {
-                        "date": f"{y}-02-01",  # approximate placeholder if unknown
-                        "year": y,
+                        "date": f"{ash_year}-02-01",
+                        "year": ash_year,
                         "event_type": "ash_wednesday",
-                        "service_label": str(ws.cell(r, 2).value or "Ash Wednesday"),
-                        "in_person": to_num(ws.cell(r, 3).value)
-                        if isinstance(to_num(ws.cell(r, 3).value), int)
-                        else to_num(ws.cell(r, 2).value),
+                        "service_label": label,
+                        "in_person": ip,
                         "online": None,
                         "boxcast": None,
                         "youtube": None,
@@ -637,6 +643,39 @@ def import_holy_week(ws) -> list[dict]:
                     }
                 )
             continue
+        # Continuation rows under Ash Wednesday (e.g. 6:30 with blank col A)
+        if ash_year and (a is None or (isinstance(a, str) and not a.strip())):
+            ip = to_num(ws.cell(r, 3).value)
+            if isinstance(ip, int) and b is not None:
+                if hasattr(b, "hour"):
+                    label = f"{b.hour}:{b.minute:02d}"
+                    if b.hour == 0 and b.minute == 0:
+                        label = "12:00"
+                    elif b.hour > 12:
+                        label = f"{b.hour - 12}:{b.minute:02d}pm"
+                    elif b.hour == 12:
+                        label = f"12:{b.minute:02d}pm"
+                    else:
+                        # Sheet stores 6:30 without AM/PM — keep neutral
+                        label = f"{b.hour}:{b.minute:02d}"
+                else:
+                    label = str(b).strip() or "Ash Wednesday"
+                events.append(
+                    {
+                        "date": f"{ash_year}-02-01",
+                        "year": ash_year,
+                        "event_type": "ash_wednesday",
+                        "service_label": label,
+                        "in_person": ip,
+                        "online": None,
+                        "boxcast": None,
+                        "youtube": None,
+                        "facebook": None,
+                        "notes": f"Ash Wednesday {ash_year}",
+                    }
+                )
+            continue
+        ash_year = None
         if not current_year or not isinstance(a, str) or not a.strip():
             continue
         lab = a.strip()

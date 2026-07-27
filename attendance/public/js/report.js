@@ -7,8 +7,12 @@ const COLORS = {
   kids: "#c05621",
   online: "#718096",
   snow: "#8a6a2f",
-  easter: "#8b6db5",
+  easter: "#c9a84c",
   christmas: "#b91c1c",
+  ash: "#8a8680",
+  holyStations: "#b8a4d4",
+  holyMaundy: "#7d5fad",
+  holyFriday: "#4a2f73",
   // Distinct year hues — avoid Traditional blue / Contemporary green
   years: ["#e11d48", "#c026d3", "#ea580c", "#ca8a04", "#7c3aed", "#db2777", "#9333ea", "#f97316"],
 };
@@ -25,6 +29,7 @@ const state = {
   rhythmService: "in_person",
   rhythmHidden: new Set(),
   easterYear: null,
+  ashYear: null,
   xmasYear: null,
   addOnline: {
     overview: false,
@@ -842,6 +847,88 @@ function wireRhythm(data) {
   });
 }
 
+function renderAshWednesday(data) {
+  const ash = data.holidays.ash_wednesday || [];
+  destroyChart("ash");
+  state.charts.ash = new Chart(document.getElementById("chart-ash"), {
+    type: "bar",
+    data: {
+      labels: ash.map((a) => String(a.year)),
+      datasets: [
+        {
+          label: "In person total",
+          data: ash.map((a) => a.in_person_total),
+          backgroundColor: COLORS.ash,
+          borderRadius: 6,
+        },
+      ],
+    },
+    options: baseOptions(),
+  });
+
+  if (!state.ashYear && ash.length) state.ashYear = String(ash[ash.length - 1].year);
+  const tabs = document.getElementById("ash-year-tabs");
+  tabs.innerHTML = ash
+    .map(
+      (a) =>
+        `<button type="button" class="chip ${String(a.year) === state.ashYear ? "active" : ""}" data-ay="${a.year}">${a.year}</button>`
+    )
+    .join("");
+  tabs.querySelectorAll(".chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.ashYear = btn.dataset.ay;
+      renderAshWednesday(data);
+    });
+  });
+
+  const current = ash.find((a) => String(a.year) === state.ashYear);
+  const services = (current && current.services) || [];
+  destroyChart("ashServices");
+  state.charts.ashServices = new Chart(document.getElementById("chart-ash-services"), {
+    type: "bar",
+    data: {
+      labels: services.map((s) => s.service_label),
+      datasets: [
+        {
+          label: "In person",
+          data: services.map((s) => s.in_person),
+          backgroundColor: COLORS.ash,
+          borderRadius: 6,
+        },
+      ],
+    },
+    options: baseOptions(),
+  });
+}
+
+function renderHolyWeek(data) {
+  const holy = data.holidays.holy_week || [];
+  const labels = holy.map((h) => String(h.year));
+  const seriesDefs = [
+    { key: "Stations of the Cross", color: COLORS.holyStations },
+    { key: "Maundy Thursday", color: COLORS.holyMaundy },
+    { key: "Good Friday", color: COLORS.holyFriday },
+  ];
+  const datasets = seriesDefs.map((def) => ({
+    label: def.key,
+    data: holy.map((h) => {
+      const hit = (h.services || []).find((s) => s.service_label === def.key);
+      return hit ? hit.in_person : null;
+    }),
+    backgroundColor: def.color,
+    borderRadius: 6,
+  }));
+
+  destroyChart("holyWeek");
+  state.charts.holyWeek = new Chart(document.getElementById("chart-holy-week"), {
+    type: "bar",
+    data: { labels, datasets },
+    options: baseOptions({
+      plugins: { legend: { display: true, position: "bottom" } },
+    }),
+  });
+}
+
 function renderEaster(data) {
   const easter = data.holidays.easter || [];
   setScopeTag("easter-scope-tag", state.addOnline.easter);
@@ -1010,6 +1097,8 @@ async function main() {
     wireRhythm(data);
     renderRhythm(data);
     wireScopeToggle("rhythm-scope-tag", "rhythm", () => renderRhythm(data));
+    renderAshWednesday(data);
+    renderHolyWeek(data);
     wireScopeToggle("easter-scope-tag", "easter", () => renderEaster(data));
     renderEaster(data);
     wireScopeToggle("xmas-scope-tag", "christmas", () => renderChristmas(data));

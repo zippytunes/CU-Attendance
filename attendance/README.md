@@ -25,7 +25,7 @@ Or after the clean sheets exist, just edit CSV and rebuild:
 | File | Purpose |
 |------|---------|
 | `data/weekly_attendance.csv` | One row per Sunday — **edit this going forward** |
-| `data/special_events.csv` | Easter, Christmas Eve, Holy Week (facts only) |
+| `data/special_events.csv` | Easter, Christmas Eve, Ash Wednesday, Holy Week (facts only) |
 
 ### Weekly CSV columns
 
