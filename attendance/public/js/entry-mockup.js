@@ -5,6 +5,8 @@ const weekRange = document.getElementById("week-range");
 const sundayInPersonDate = document.getElementById("sunday-in-person-date");
 const ccnDate = document.getElementById("ccn-date");
 const snowClosed = document.getElementById("snow-closed");
+const snowToggle = document.getElementById("snow-toggle");
+const snowPanel = document.getElementById("snow-panel");
 const sundayServices = document.getElementById("sunday-services");
 const addSpecial = document.getElementById("add-special");
 const specialAddType = document.getElementById("special-add-type");
@@ -119,7 +121,15 @@ function syncSnowStyles() {
     const snow = isSnowValue(input.value);
     card.classList.toggle("is-snow", snow);
   });
+  const anySnow = inputs.some((input) => isSnowValue(input.value));
   snowClosed.checked = inputs.length > 0 && inputs.every((input) => isSnowValue(input.value));
+  snowToggle.classList.toggle("has-snow", anySnow);
+}
+
+function setSnowPanelOpen(open) {
+  snowPanel.hidden = !open;
+  snowToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  snowToggle.classList.toggle("is-open", open);
 }
 
 function applyFullSnow(on) {
@@ -135,8 +145,13 @@ function applyFullSnow(on) {
 
 sundayDate.addEventListener("change", updateWeekRange);
 
+snowToggle.addEventListener("click", () => {
+  setSnowPanelOpen(snowPanel.hidden);
+});
+
 snowClosed.addEventListener("change", () => {
   applyFullSnow(snowClosed.checked);
+  if (snowClosed.checked) setSnowPanelOpen(true);
 });
 
 sundayServices.addEventListener("input", (e) => {

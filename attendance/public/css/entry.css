@@ -44,6 +44,28 @@
   border-top: 1px solid var(--line);
 }
 
+.snow-chip {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.snow-chip.is-open,
+.snow-chip.has-snow {
+  border-color: rgba(138, 106, 47, 0.45);
+  color: #8a6a2f;
+  background: #f7f1e6;
+}
+
+.snow-chip.has-snow {
+  font-weight: 700;
+}
+
+.snow-panel {
+  margin-top: 0.75rem;
+}
+
 .snow-advice {
   margin: 0.35rem 0 0;
   color: var(--muted);
