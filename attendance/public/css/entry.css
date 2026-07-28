@@ -1,0 +1,295 @@
+/* Weekly entry mockup — extends report.css */
+
+.mock-banner {
+  margin: 1.25rem 0 0;
+  padding: 0.75rem 1rem;
+  border: 1px dashed rgba(31, 58, 95, 0.35);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--navy);
+  font-size: 0.95rem;
+}
+
+.entry-week-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: end;
+}
+
+.week-range {
+  margin: 1.1rem 0 0.35rem;
+  font-family: var(--display);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.week-hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.snow-full {
+  margin: 0.35rem 0 0.5rem;
+  padding-bottom: 0;
+}
+
+.snow-advice {
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  max-width: 42rem;
+}
+
+.count-card.is-snow {
+  background: #f3eee4;
+  border-color: rgba(138, 106, 47, 0.35);
+}
+
+.count-card.is-snow .count-input {
+  background: #efe8da;
+  color: #8a6a2f;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.special-add-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.special-add-field {
+  min-width: min(20rem, 100%);
+  flex: 1;
+}
+
+.special-add-row .btn-secondary {
+  margin-bottom: 0.05rem;
+}
+
+.sunday-aside-date {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  text-align: right;
+  line-height: 1.25;
+  max-width: 14rem;
+}
+
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 12rem;
+}
+
+.field-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.field input,
+.field select,
+.count-card input {
+  font: inherit;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  background: #fff;
+}
+
+.field input:focus,
+.field select:focus,
+.count-card input:focus {
+  outline: 2px solid rgba(31, 58, 95, 0.25);
+  border-color: var(--navy-soft);
+}
+
+.check-field {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: auto;
+  padding-bottom: 0.55rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.service-grid,
+.online-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.count-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.85rem 0.9rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fcfbf9;
+}
+
+.count-card input {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.count-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.count-card.trad {
+  border-color: rgba(43, 108, 176, 0.35);
+  box-shadow: inset 3px 0 0 var(--traditional);
+}
+.count-card.trad .count-eyebrow { color: var(--traditional); }
+
+.count-card.cont {
+  border-color: rgba(47, 133, 90, 0.35);
+  box-shadow: inset 3px 0 0 var(--contemporary);
+}
+.count-card.cont .count-eyebrow { color: var(--contemporary); }
+
+.count-card.kids {
+  border-color: rgba(192, 86, 33, 0.35);
+  box-shadow: inset 3px 0 0 var(--kids);
+}
+.count-card.kids .count-eyebrow { color: var(--kids); }
+
+.count-card.online {
+  border-color: rgba(113, 128, 150, 0.35);
+  box-shadow: inset 3px 0 0 var(--online);
+}
+.count-card.online .count-eyebrow { color: var(--online); }
+
+.count-card.muted-card {
+  max-width: 220px;
+  opacity: 0.72;
+}
+
+.entry-subcard {
+  margin-top: 1.25rem;
+}
+
+.optional-tag {
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.special-list {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.special-row-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.special-row-head h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.special-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+.text-btn {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.text-btn:hover { color: var(--ink); }
+
+.save-panel h2 { margin-bottom: 0.25rem; }
+
+.save-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.25rem;
+  align-items: end;
+}
+
+.save-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  appearance: none;
+  font: inherit;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.7rem 1.15rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: #fff;
+}
+
+.btn-primary:hover { background: var(--navy-soft); }
+
+.btn-secondary {
+  background: #fff;
+  color: var(--navy);
+  border-color: var(--line);
+}
+
+.btn-secondary:hover { border-color: var(--navy-soft); }
+
+.save-note {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  background: rgba(47, 133, 90, 0.1);
+  color: var(--contemporary);
+  font-weight: 600;
+}
+

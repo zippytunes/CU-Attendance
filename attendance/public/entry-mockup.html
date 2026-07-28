@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Concord United — Weekly Attendance Entry (Mockup)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/report.css" />
+  <link rel="stylesheet" href="css/entry.css?v=20260727e" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand-row">
+        <img class="brand-logo" src="img/logo-concord.png" alt="Concord United Methodist Church" />
+        <div class="brand-copy">
+          <h1>Weekly Attendance Entry</h1>
+          <p class="lede">Mockup for office entry — same look as the Worship Attendance Report. Nothing saves yet.</p>
+        </div>
+        <a class="header-action" href="index.html">View report</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="mock-banner">
+      <strong>Mockup only.</strong> Layout and flow for the church secretary — not connected to live data yet.
+    </div>
+
+    <section class="panel" id="week">
+      <div class="section-head">
+        <div>
+          <h2>Choose the week</h2>
+          <p class="section-intro">Pick the Sunday. The week runs Sunday through Saturday so mid-week counts still belong here.</p>
+        </div>
+        <span class="scope-tag">Office entry</span>
+      </div>
+
+      <div class="entry-week-row">
+        <label class="field">
+          <span class="field-label">Sunday date</span>
+          <input type="date" id="sunday-date" value="2026-07-12" />
+        </label>
+      </div>
+
+      <p class="week-range" id="week-range">Week of July 12 – July 18, 2026</p>
+      <p class="week-hint" id="week-hint">Mock: choosing a past Sunday would load any saved counts so she can edit and re-save.</p>
+    </section>
+
+    <section class="panel" id="sunday">
+      <div class="section-head">
+        <div>
+          <h2>Sunday in person</h2>
+          <p class="section-intro">The regular five worship counts for this Sunday.</p>
+        </div>
+        <p class="sunday-aside-date" id="sunday-in-person-date">Sunday, July 12, 2026</p>
+      </div>
+
+      <label class="field check-field snow-full">
+        <input type="checkbox" id="snow-closed" />
+        <span>Full snow closure — all Sunday services cancelled</span>
+      </label>
+      <p class="snow-advice">
+        Or type <strong>SNOW</strong> in any service that was cancelled (e.g. 9am closed, 11am still met).
+        Saved as cancelled — not counted as zero.
+      </p>
+
+      <div class="service-grid" id="sunday-services">
+        <div class="count-card trad" data-service="trad9">
+          <span class="count-eyebrow">9:00 · Traditional</span>
+          <input type="text" inputmode="numeric" placeholder="—" class="count-input" autocomplete="off" />
+        </div>
+        <div class="count-card cont" data-service="cont9">
+          <span class="count-eyebrow">9:00 · Contemporary</span>
+          <input type="text" inputmode="numeric" placeholder="—" class="count-input" autocomplete="off" />
+        </div>
+        <div class="count-card kids" data-service="kids">
+          <span class="count-eyebrow">11:00 · Kids Worship</span>
+          <input type="text" inputmode="numeric" placeholder="—" class="count-input" autocomplete="off" />
+        </div>
+        <div class="count-card trad" data-service="trad11">
+          <span class="count-eyebrow">11:00 · Traditional</span>
+          <input type="text" inputmode="numeric" placeholder="—" class="count-input" autocomplete="off" />
+        </div>
+        <div class="count-card cont" data-service="cont11">
+          <span class="count-eyebrow">11:00 · Contemporary</span>
+          <input type="text" inputmode="numeric" placeholder="—" class="count-input" autocomplete="off" />
+        </div>
+      </div>
+
+      <div class="chart-card entry-subcard">
+        <div class="chart-head">
+          <h3>Online viewing</h3>
+        </div>
+        <p class="section-intro" style="margin-top:0">Filled most weeks — often a day or two after Sunday.</p>
+        <div class="online-grid" id="online-fields">
+          <label class="count-card online">
+            <span class="count-eyebrow">Boxcast total</span>
+            <input type="number" min="0" inputmode="numeric" placeholder="—" />
+          </label>
+          <label class="count-card online">
+            <span class="count-eyebrow">YouTube total</span>
+            <input type="number" min="0" inputmode="numeric" placeholder="—" />
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="wednesday">
+      <div class="chart-head">
+        <h2 style="margin:0">Wednesday night · CCN</h2>
+        <span class="scope-tag">Later phase</span>
+      </div>
+      <p class="section-intro">Ready in the layout — can stay off until Wednesday counts join the workflow.</p>
+      <label class="count-card muted-card">
+        <span class="count-eyebrow">CCN in person</span>
+        <input type="number" min="0" inputmode="numeric" placeholder="—" disabled />
+      </label>
+    </section>
+
+    <section class="panel" id="specials">
+      <div class="section-head">
+        <div>
+          <h2>Special services</h2>
+          <p class="section-intro">
+            Ordinary weeks stay empty. Add rows only when needed — Ash Wednesday, Stations, Maundy Thursday, Good Friday, Christmas Eve, Worship Night, and other one-offs.
+          </p>
+        </div>
+      </div>
+
+      <div class="special-add-row">
+        <label class="field special-add-field">
+          <span class="field-label">Add a special service</span>
+          <select id="special-add-type">
+            <option value="">Choose type…</option>
+            <option>Ash Wednesday</option>
+            <option>Stations of the Cross</option>
+            <option>Maundy Thursday</option>
+            <option>Good Friday</option>
+            <option>Christmas Eve</option>
+            <option>Worship Night</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <button type="button" class="btn-secondary" id="add-special">Add</button>
+      </div>
+
+      <div id="special-list" class="special-list" hidden></div>
+
+      <template id="special-row-template">
+        <div class="special-row chart-card">
+          <div class="special-row-head">
+            <h3 class="special-title">Special service</h3>
+            <button type="button" class="text-btn remove-special">Remove</button>
+          </div>
+          <div class="special-grid">
+            <label class="field">
+              <span class="field-label">Date</span>
+              <input type="date" class="special-date" />
+            </label>
+            <label class="field">
+              <span class="field-label">Type</span>
+              <select class="special-type">
+                <option>Ash Wednesday</option>
+                <option>Stations of the Cross</option>
+                <option>Maundy Thursday</option>
+                <option>Good Friday</option>
+                <option>Christmas Eve</option>
+                <option>Worship Night</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label class="field">
+              <span class="field-label">Service label / time</span>
+              <input type="text" placeholder="e.g. Noon, 6:30, 4PM – T" />
+            </label>
+            <label class="field">
+              <span class="field-label">In person</span>
+              <input type="number" min="0" inputmode="numeric" placeholder="—" />
+            </label>
+          </div>
+        </div>
+      </template>
+    </section>
+
+    <section class="panel save-panel">
+      <div class="save-row">
+        <div>
+          <h2>Save this week</h2>
+          <p class="section-intro">
+            Mockup: Save would update the live report data and refresh the Excel copy in Teams/OneDrive.
+            Coming back to a past Sunday would show what’s already saved so she can edit and save again.
+          </p>
+        </div>
+        <div class="save-actions">
+          <button type="button" class="btn-secondary" id="save-draft">Save draft</button>
+          <button type="button" class="btn-primary" id="save-week">Save week</button>
+        </div>
+      </div>
+      <p class="save-note" id="save-note" hidden>Saved (mock) — report would rebuild; Teams Excel would update.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Mockup · Concord United Methodist Church · Weekly Attendance Entry</p>
+    </div>
+  </footer>
+
+  <script src="js/entry-mockup.js?v=20260727e"></script>
+</body>
+</html>

@@ -50,6 +50,43 @@ body {
   margin-bottom: 1rem;
 }
 
+.brand-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.header-action {
+  margin-left: auto;
+  align-self: flex-start;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: #fff;
+  background: var(--navy);
+  border: 1px solid var(--navy);
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.header-action:hover {
+  background: var(--navy-soft);
+  border-color: var(--navy-soft);
+}
+
+@media (max-width: 640px) {
+  .brand-row {
+    flex-wrap: wrap;
+  }
+
+  .header-action {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
+
 .brand-logo {
   height: clamp(48px, 7vw, 64px);
   width: auto;
@@ -319,14 +356,6 @@ body {
   border: 1px solid var(--line);
   border-radius: 12px;
   background: #fcfbf9;
-}
-
-.chart-card canvas {
-  display: block;
-  width: 100% !important;
-  max-width: 100%;
-  min-height: 220px;
-  background: #fff;
 }
 
 .chart-card h3 {
