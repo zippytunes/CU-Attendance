@@ -148,6 +148,68 @@ body {
   color: var(--navy);
 }
 
+.panel.collapsible {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.panel-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.15rem 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.panel-toggle:focus-visible {
+  outline: 2px solid rgba(31, 58, 95, 0.35);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.panel-toggle h2 {
+  margin: 0;
+}
+
+.panel-chevron {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 2px solid var(--navy);
+  border-bottom: 2px solid var(--navy);
+  transform: rotate(45deg);
+  transition: transform 0.18s ease;
+  flex-shrink: 0;
+  margin-right: 0.35rem;
+}
+
+.panel.collapsible.is-collapsed .panel-chevron {
+  transform: rotate(-45deg);
+}
+
+.panel.collapsible.is-collapsed {
+  padding-bottom: 1rem;
+}
+
+.panel.collapsible.is-collapsed .panel-body {
+  display: none;
+}
+
+.panel-body {
+  padding-top: 0.55rem;
+}
+
+.panel-body > .section-intro:first-child {
+  margin-top: 0;
+}
+
 .section-head {
   display: flex;
   align-items: flex-start;
