@@ -45,7 +45,7 @@ body {
 
 .brand-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.25rem;
   margin-bottom: 1rem;
 }
@@ -57,7 +57,6 @@ body {
 
 .header-action {
   margin-left: auto;
-  align-self: flex-start;
   flex-shrink: 0;
   text-decoration: none;
   color: #fff;
@@ -95,6 +94,8 @@ body {
   background: transparent;
   padding: 0;
   border-radius: 0;
+  /* Optical align with Fraunces H1 cap height */
+  margin-top: 0.2rem;
 }
 
 .site-header h1 {
