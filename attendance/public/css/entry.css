@@ -34,15 +34,28 @@
 }
 
 .snow-full {
-  margin: 0.35rem 0 0.5rem;
+  margin: 0;
   padding-bottom: 0;
 }
 
+.snow-footer {
+  margin-top: 1.1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+}
+
 .snow-advice {
-  margin: 0 0 0.85rem;
+  margin: 0.35rem 0 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   max-width: 42rem;
+  font-weight: 400;
+}
+
+.snow-footer .check-field {
+  font-weight: 500;
+  color: var(--muted);
+  padding-bottom: 0;
 }
 
 .count-card.is-snow {

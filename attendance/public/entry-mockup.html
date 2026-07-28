@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/report.css?v=18" />
-  <link rel="stylesheet" href="css/entry.css?v=20260727e" />
+  <link rel="stylesheet" href="css/entry.css?v=20260728a" />
 </head>
 <body>
   <header class="site-header">
@@ -58,15 +58,6 @@
         <p class="sunday-aside-date" id="sunday-in-person-date">Sunday, July 12, 2026</p>
       </div>
 
-      <label class="field check-field snow-full">
-        <input type="checkbox" id="snow-closed" />
-        <span>Full snow closure — all Sunday services cancelled</span>
-      </label>
-      <p class="snow-advice">
-        Or type <strong>SNOW</strong> in any service that was cancelled (e.g. 9am closed, 11am still met).
-        Saved as cancelled — not counted as zero.
-      </p>
-
       <div class="service-grid" id="sunday-services">
         <div class="count-card trad" data-service="trad9">
           <span class="count-eyebrow">9:00 · Traditional</span>
@@ -88,6 +79,17 @@
           <span class="count-eyebrow">11:00 · Contemporary</span>
           <input type="text" inputmode="numeric" placeholder="—" class="count-input" autocomplete="off" />
         </div>
+      </div>
+
+      <div class="snow-footer">
+        <label class="field check-field snow-full">
+          <input type="checkbox" id="snow-closed" />
+          <span>Full snow closure — all Sunday services cancelled</span>
+        </label>
+        <p class="snow-advice">
+          Or type <strong>SNOW</strong> in any cancelled service box (e.g. 9am closed, 11am still met).
+          Saved as cancelled — not counted as zero.
+        </p>
       </div>
 
       <div class="chart-card entry-subcard">
