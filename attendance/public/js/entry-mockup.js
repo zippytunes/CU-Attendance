@@ -3,6 +3,7 @@
 const sundayDate = document.getElementById("sunday-date");
 const weekRange = document.getElementById("week-range");
 const sundayInPersonDate = document.getElementById("sunday-in-person-date");
+const ccnDate = document.getElementById("ccn-date");
 const snowClosed = document.getElementById("snow-closed");
 const sundayServices = document.getElementById("sunday-services");
 const addSpecial = document.getElementById("add-special");
@@ -21,7 +22,7 @@ function formatDayYear(d) {
   return d.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
 }
 
-function formatSundayLabel(d) {
+function formatWeekdayLabel(d) {
   return d.toLocaleDateString(undefined, {
     weekday: "long",
     month: "long",
@@ -30,22 +31,59 @@ function formatSundayLabel(d) {
   });
 }
 
-function updateWeekRange() {
+function parseSunday() {
   const value = sundayDate.value;
-  if (!value) {
+  if (!value) return null;
+  return new Date(value + "T12:00:00");
+}
+
+function toInputDate(d) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function offsetFromSunday(sunday, days) {
+  const d = new Date(sunday);
+  d.setDate(d.getDate() + days);
+  return d;
+}
+
+/** Default special-service date from the chosen Sunday week / year. */
+function defaultDateForSpecialType(type, sunday) {
+  if (!sunday) return "";
+  switch (type) {
+    case "Ash Wednesday":
+      return toInputDate(offsetFromSunday(sunday, 3)); // Wed of this week
+    case "Maundy Thursday":
+      return toInputDate(offsetFromSunday(sunday, 4));
+    case "Good Friday":
+      return toInputDate(offsetFromSunday(sunday, 5));
+    case "Christmas Eve":
+      return `${sunday.getFullYear()}-12-24`;
+    default:
+      return toInputDate(sunday);
+  }
+}
+
+function updateWeekRange() {
+  const start = parseSunday();
+  if (!start) {
     weekRange.textContent = "Pick a Sunday to set the week";
     sundayInPersonDate.textContent = "Pick a Sunday above";
+    ccnDate.textContent = "Pick a Sunday above";
     return;
   }
-  const start = new Date(value + "T12:00:00");
-  const end = new Date(start);
-  end.setDate(start.getDate() + 6);
+  const end = offsetFromSunday(start, 6);
+  const wed = offsetFromSunday(start, 3);
   const sameMonth = start.getMonth() === end.getMonth();
   const range = sameMonth
     ? `${formatDay(start)} – ${end.getDate()}, ${end.getFullYear()}`
     : `${formatDay(start)} – ${formatDayYear(end)}`;
   weekRange.textContent = `Week of ${range}`;
-  sundayInPersonDate.textContent = formatSundayLabel(start);
+  sundayInPersonDate.textContent = formatWeekdayLabel(start);
+  ccnDate.textContent = formatWeekdayLabel(wed);
 }
 
 function isSnowValue(raw) {
@@ -67,12 +105,10 @@ function normalizeCountInput(input, finalize = false) {
     input.value = "SNOW";
     return;
   }
-  // Allow typing S / SN / SNO on the way to SNOW
   if (isSnowPrefix(raw)) {
     input.value = finalize ? "" : raw.toUpperCase();
     return;
   }
-  // Counts: digits only
   input.value = raw.replace(/[^\d]/g, "");
 }
 
@@ -115,6 +151,10 @@ sundayServices.addEventListener("blur", (e) => {
   syncSnowStyles();
 }, true);
 
+function applySpecialDate(select, dateInput) {
+  dateInput.value = defaultDateForSpecialType(select.value, parseSunday());
+}
+
 function addSpecialRow(type) {
   specialList.hidden = false;
   const node = specialTemplate.content.cloneNode(true);
@@ -126,11 +166,10 @@ function addSpecialRow(type) {
     select.value = type;
     title.textContent = type;
   }
-  if (sundayDate.value) {
-    dateInput.value = sundayDate.value;
-  }
+  applySpecialDate(select, dateInput);
   select.addEventListener("change", () => {
     title.textContent = select.value;
+    applySpecialDate(select, dateInput);
   });
   specialList.appendChild(node);
 }
