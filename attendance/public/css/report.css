@@ -321,6 +321,14 @@ body {
   background: #fcfbf9;
 }
 
+.chart-card canvas {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  min-height: 220px;
+  background: #fff;
+}
+
 .chart-card h3 {
   margin: 0 0 0.75rem;
   font-size: 1.02rem;
