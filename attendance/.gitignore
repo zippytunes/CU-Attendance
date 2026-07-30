@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+public/exports/*.png
+public/exports/*.pdf.png
