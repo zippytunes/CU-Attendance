@@ -248,13 +248,11 @@ def easter_xmas_twin(data, s):
     xmas_rows = [[e["year"], n(e.get("in_person_total"))] for e in data["holidays"]["christmas_eve"]]
     left = [
         Paragraph("Easter Sunday — in person", s["h2"]),
-        Paragraph("Included in weekly averages.", s["muted"]),
         Spacer(1, 2),
         styled_table(["Year", "Total"], easter_rows, s, col_widths=[1.5*inch, 1.85*inch]),
     ]
     right = [
         Paragraph("Christmas Eve — in person", s["h2"]),
-        Paragraph("Shown as a fact — not in weekly averages.", s["muted"]),
         Spacer(1, 2),
         styled_table(["Year", "Total"], xmas_rows, s, col_widths=[1.5*inch, 1.85*inch]),
     ]
