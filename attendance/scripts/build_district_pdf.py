@@ -117,18 +117,22 @@ def styles():
     }
 
 
-def logo_image(max_width=1.55 * inch, max_height=0.58 * inch):
+def logo_image(max_width=1.85 * inch, max_height=0.68 * inch):
     """Preserve native logo aspect ratio (1200×423)."""
     if not LOGO.exists():
-        return []
-    nat_w, nat_h = 1200, 423
+        return ""
+    nat_w, nat_h = 1200.0, 423.0
     aspect = nat_w / nat_h
-    width = max_width
+    width = float(max_width)
     height = width / aspect
     if height > max_height:
-        height = max_height
+        height = float(max_height)
         width = height * aspect
-    return [Image(str(LOGO), width=width, height=height)]
+    img = Image(str(LOGO))
+    img.drawWidth = width
+    img.drawHeight = height
+    img.hAlign = "LEFT"
+    return img
 
 
 def header_block(data, s):
@@ -141,11 +145,13 @@ def header_block(data, s):
             s["subtitle"],
         ),
     ]
-    t = Table([[left, right]], colWidths=[1.7 * inch, 5.55 * inch])
+    t = Table([[left, right]], colWidths=[2.0 * inch, 5.25 * inch])
     t.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+        ("RIGHTPADDING", (0, 0), (0, 0), 8),
+        ("LEFTPADDING", (1, 0), (1, 0), 4),
+        ("RIGHTPADDING", (1, 0), (1, 0), 0),
         ("TOPPADDING", (0, 0), (-1, -1), 0),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
         ("LINEBELOW", (0, 0), (-1, -1), 1, LINE),
@@ -264,6 +270,17 @@ def easter_xmas_twin(data, s):
 
 
 def build_page1(data, s):
+    holy_rows = []
+    for e in data["holidays"]["holy_week"]:
+        labels = {svc["service_label"]: svc["in_person"] for svc in e.get("services", [])}
+        holy_rows.append([
+            e["year"],
+            n(labels.get("Stations of the Cross")),
+            n(labels.get("Maundy Thursday")),
+            n(labels.get("Good Friday")),
+            n(e.get("in_person_total")),
+        ])
+
     return [
         header_block(data, s),
         Spacer(1, 5),
@@ -283,7 +300,7 @@ def build_page1(data, s):
         ),
         Spacer(1, 2),
         yearly_table(data, s),
-        Spacer(1, 6),
+        Spacer(1, 5),
         Paragraph("2. Special Sundays (high-attendance moments)", s["h2"]),
         Paragraph(
             "Easter is included in weekly averages. Christmas Eve is reported separately and not mixed into the ordinary Sunday average.",
@@ -291,20 +308,20 @@ def build_page1(data, s):
         ),
         Spacer(1, 2),
         easter_xmas_twin(data, s),
+        Spacer(1, 5),
+        Paragraph("Holy Week — in person", s["h2"]),
+        Paragraph("Facts only — not included in ordinary Sunday averages.", s["muted"]),
+        Spacer(1, 2),
+        styled_table(
+            ["Year", "Stations", "Maundy Thu", "Good Friday", "Week Total"],
+            holy_rows,
+            s,
+            col_widths=[1.1*inch, 1.4*inch, 1.5*inch, 1.5*inch, 1.25*inch],
+        ),
     ]
 
 
 def build_page2(data, s):
-    holy_rows = []
-    for e in data["holidays"]["holy_week"]:
-        labels = {svc["service_label"]: svc["in_person"] for svc in e.get("services", [])}
-        holy_rows.append([
-            e["year"],
-            n(labels.get("Stations of the Cross")),
-            n(labels.get("Maundy Thursday")),
-            n(labels.get("Good Friday")),
-            n(e.get("in_person_total")),
-        ])
     ash = data["holidays"]["ash_wednesday"]
     if ash:
         a = ash[-1]
@@ -318,45 +335,25 @@ def build_page2(data, s):
         for y in data["streaming"]["yearly"]
     ]
 
-    left = [
-        Paragraph("Online viewing avg / Sunday", s["h2"]),
-        Paragraph("Secondary context for reach — not a substitute for in-person counts.", s["muted"]),
-        Spacer(1, 2),
-        styled_table(
-            ["Year", "Online", "Boxcast", "YouTube"],
-            stream_rows,
-            s,
-            col_widths=[0.75*inch, 0.85*inch, 0.9*inch, 0.9*inch],
-        ),
-    ]
-    right = [
-        Paragraph("Ash Wednesday", s["h2"]),
-        Paragraph(ash_txt, s["body"]),
-    ]
-    twin = Table([[left, right]], colWidths=[3.7 * inch, 3.4 * inch])
-    twin.setStyle(TableStyle([
-        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (0, 0), 10),
-        ("LEFTPADDING", (1, 0), (1, 0), 6),
-        ("RIGHTPADDING", (1, 0), (1, 0), 0),
-    ]))
-
     return [
         header_block(data, s),
-        Spacer(1, 4),
-        Paragraph("3. Holy Week — in person", s["h2"]),
-        Paragraph("Facts only — not included in ordinary Sunday averages.", s["muted"]),
-        Spacer(1, 2),
-        styled_table(
-            ["Year", "Stations", "Maundy Thu", "Good Friday", "Week Total"],
-            holy_rows,
-            s,
-            col_widths=[1.1*inch, 1.4*inch, 1.5*inch, 1.5*inch, 1.25*inch],
-        ),
         Spacer(1, 6),
-        twin,
+        Paragraph("3. Online viewing &amp; other services", s["h2"]),
+        Paragraph(
+            "Online is secondary context for reach — not a substitute for in-person worship counts.",
+            s["body"],
+        ),
+        Spacer(1, 3),
+        styled_table(
+            ["Year", "Avg Online", "Boxcast", "YouTube"],
+            stream_rows,
+            s,
+            col_widths=[1.4*inch, 1.85*inch, 1.85*inch, 1.85*inch],
+        ),
         Spacer(1, 8),
+        Paragraph("Ash Wednesday", s["h2"]),
+        Paragraph(ash_txt, s["body"]),
+        Spacer(1, 10),
         Paragraph("Quick notes", s["h2"]),
         Paragraph(
             "• <b>Weekly average</b> = ordinary Sundays only.<br/>"
@@ -366,7 +363,7 @@ def build_page2(data, s):
             "• Kids Worship (11am) is included in in-person totals.",
             s["body"],
         ),
-        Spacer(1, 10),
+        Spacer(1, 12),
         Paragraph(
             f"Generated {data['generated']} · Concord United Methodist Church · "
             f"Office records {data['overview']['date_start']} → {data['overview']['date_end']}",
