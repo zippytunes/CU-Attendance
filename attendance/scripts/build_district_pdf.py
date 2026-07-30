@@ -139,9 +139,9 @@ def header_block(data, s):
     ov = data["overview"]
     left = logo_image()
     right = [
-        Paragraph("Concord United Methodist Church", s["title"]),
+        Paragraph("Worship Attendance Summary", s["title"]),
         Paragraph(
-            f"Worship Attendance Summary · Ordinary Sunday averages · Through {ov['date_end']}",
+            f"Ordinary Sunday averages · Through {ov['date_end']}",
             s["subtitle"],
         ),
     ]
@@ -284,7 +284,7 @@ def build_page1(data, s):
     return [
         header_block(data, s),
         Spacer(1, 5),
-        Paragraph("1. Weekly Average Attendance — the number that matters most", s["h2"]),
+        Paragraph("1. Weekly Average Attendance", s["h2"]),
         Paragraph(
             "Ordinary Sunday <b>in-person</b> average. "
             "Snow closures and Christmas Eve/Day Sundays are left out of this average.",
@@ -322,14 +322,6 @@ def build_page1(data, s):
 
 
 def build_page2(data, s):
-    ash = data["holidays"]["ash_wednesday"]
-    if ash:
-        a = ash[-1]
-        parts = ", ".join(f"{svc['service_label']}: {n(svc['in_person'])}" for svc in a.get("services", []))
-        ash_txt = f"<b>{a['year']}</b> total: <b>{n(a['in_person_total'])}</b> ({parts}). Limited years recorded so far."
-    else:
-        ash_txt = "Limited Ash Wednesday coverage in the office sheet so far."
-
     stream_rows = [
         [y["year"], n(y.get("avg_online")), n(y.get("avg_boxcast")), n(y.get("avg_youtube"))]
         for y in data["streaming"]["yearly"]
@@ -338,11 +330,7 @@ def build_page2(data, s):
     return [
         header_block(data, s),
         Spacer(1, 6),
-        Paragraph("3. Online viewing &amp; other services", s["h2"]),
-        Paragraph(
-            "Online is secondary context for reach — not a substitute for in-person worship counts.",
-            s["body"],
-        ),
+        Paragraph("3. Online viewing", s["h2"]),
         Spacer(1, 3),
         styled_table(
             ["Year", "Avg Online", "Boxcast", "YouTube"],
@@ -350,10 +338,7 @@ def build_page2(data, s):
             s,
             col_widths=[1.4*inch, 1.85*inch, 1.85*inch, 1.85*inch],
         ),
-        Spacer(1, 8),
-        Paragraph("Ash Wednesday", s["h2"]),
-        Paragraph(ash_txt, s["body"]),
-        Spacer(1, 10),
+        Spacer(1, 12),
         Paragraph("Quick notes", s["h2"]),
         Paragraph(
             "• <b>Weekly average</b> = ordinary Sundays only.<br/>"
