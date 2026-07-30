@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Worship Attendance Summary — Concord United</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/summary.css?v=1" />
+  <script src="js/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap brand-row">
+      <img class="brand-logo" src="img/logo-concord.png" alt="Concord United Methodist Church" />
+      <div class="brand-copy">
+        <h1>Worship Attendance Summary</h1>
+        <p class="lede" id="header-range">Ordinary Sunday averages</p>
+      </div>
+      <a class="header-action" href="exports/district-attendance-summary.pdf">Download PDF</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-label="Weekly average">
+      <div class="hero-main">
+        <p class="hero-num" id="hero-avg">—</p>
+        <p class="hero-label" id="hero-label">Weekly average — in person</p>
+        <p class="hero-sub" id="hero-sub"></p>
+      </div>
+      <div class="hero-stats" id="hero-stats"></div>
+    </section>
+
+    <section class="block">
+      <h2>Ordinary Sunday averages by year</h2>
+      <div class="chart-frame">
+        <canvas id="chart-yearly" height="90"></canvas>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table" id="yearly-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Avg In Person</th>
+              <th>Traditional</th>
+              <th>Contemporary</th>
+              <th>Kids 11am</th>
+              <th>Online</th>
+              <th>Sundays</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block twin">
+      <div>
+        <h2>Easter Sunday — in person</h2>
+        <div class="chart-frame chart-sm">
+          <canvas id="chart-easter" height="80"></canvas>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table compact" id="easter-table">
+            <thead><tr><th>Year</th><th>Total</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h2>Christmas Eve — in person</h2>
+        <div class="chart-frame chart-sm">
+          <canvas id="chart-xmas" height="80"></canvas>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table compact" id="xmas-table">
+            <thead><tr><th>Year</th><th>Total</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Holy Week — in person</h2>
+      <div class="table-scroll">
+        <table class="data-table" id="holy-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Stations</th>
+              <th>Maundy Thu</th>
+              <th>Good Friday</th>
+              <th>Week Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Online viewing</h2>
+      <div class="chart-frame chart-sm">
+        <canvas id="chart-online" height="80"></canvas>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table" id="online-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Avg Online</th>
+              <th>Boxcast</th>
+              <th>YouTube</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap" id="footer-meta"></div>
+  </footer>
+
+  <script src="js/summary.js?v=1"></script>
+</body>
+</html>

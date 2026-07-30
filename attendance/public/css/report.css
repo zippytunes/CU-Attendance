@@ -55,9 +55,15 @@ body {
   min-width: 0;
 }
 
-.header-action {
+.header-actions {
   margin-left: auto;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-action {
   text-decoration: none;
   color: #fff;
   background: var(--navy);
@@ -74,14 +80,30 @@ body {
   border-color: var(--navy-soft);
 }
 
+.header-action.ghost {
+  color: var(--navy);
+  background: transparent;
+  border-color: var(--navy);
+}
+
+.header-action.ghost:hover {
+  color: #fff;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
 @media (max-width: 640px) {
   .brand-row {
     flex-wrap: wrap;
   }
 
-  .header-action {
+  .header-actions {
     margin-left: 0;
     width: 100%;
+  }
+
+  .header-action {
+    flex: 1;
     text-align: center;
   }
 }
