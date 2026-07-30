@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a 2-page (front/back) district handout from report.json."""
+"""Build a 2-page (front/back) worship attendance handout from report.json."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 from reportlab.lib.colors import HexColor, white
-from reportlab.lib.enums import TA_CENTER, TA_LEFT
+from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
@@ -34,9 +34,6 @@ INK = HexColor("#1c2430")
 MUTED = HexColor("#5c6775")
 LINE = HexColor("#d9d2c5")
 PAPER = HexColor("#f7f4ef")
-TRAD = HexColor("#2b6cb0")
-CONT = HexColor("#2f855a")
-KIDS = HexColor("#c05621")
 ROW_ALT = HexColor("#fbfaf7")
 HIGHLIGHT = HexColor("#efe8f0")
 
@@ -120,18 +117,31 @@ def styles():
     }
 
 
+def logo_image(max_width=1.55 * inch, max_height=0.58 * inch):
+    """Preserve native logo aspect ratio (1200×423)."""
+    if not LOGO.exists():
+        return []
+    nat_w, nat_h = 1200, 423
+    aspect = nat_w / nat_h
+    width = max_width
+    height = width / aspect
+    if height > max_height:
+        height = max_height
+        width = height * aspect
+    return [Image(str(LOGO), width=width, height=height)]
+
+
 def header_block(data, s):
     ov = data["overview"]
-    left = [Image(str(LOGO), width=1.0 * inch, height=0.62 * inch)] if LOGO.exists() else []
+    left = logo_image()
     right = [
         Paragraph("Concord United Methodist Church", s["title"]),
         Paragraph(
-            f"Worship Attendance Summary for District Office · "
-            f"Ordinary Sunday averages · Through {ov['date_end']}",
+            f"Worship Attendance Summary · Ordinary Sunday averages · Through {ov['date_end']}",
             s["subtitle"],
         ),
     ]
-    t = Table([[left, right]], colWidths=[1.15 * inch, 6.1 * inch])
+    t = Table([[left, right]], colWidths=[1.7 * inch, 5.55 * inch])
     t.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
@@ -227,36 +237,30 @@ def yearly_table(data, s):
     )
 
 
-def hour_table(data, s):
-    y = str(data["overview"]["current_year"])
-    h = data["years"][y]["hour_averages"]
-    rows = [[
-        Paragraph("9am Trad", s["th"]),
-        Paragraph("9am Cont", s["th"]),
-        Paragraph("11am Trad", s["th"]),
-        Paragraph("11am Cont", s["th"]),
-        Paragraph("Kids 11am", s["th"]),
-    ], [
-        Paragraph(n(h["trad_9"]), s["td_bold"]),
-        Paragraph(n(h["cont_9"]), s["td_bold"]),
-        Paragraph(n(h["trad_11"]), s["td_bold"]),
-        Paragraph(n(h["cont_11"]), s["td_bold"]),
-        Paragraph(n(h["kids_11"]), s["td_bold"]),
-    ]]
-    t = Table(rows, colWidths=[1.45 * inch] * 5)
-    t.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (0, 0), TRAD),
-        ("BACKGROUND", (1, 0), (1, 0), CONT),
-        ("BACKGROUND", (2, 0), (2, 0), TRAD),
-        ("BACKGROUND", (3, 0), (3, 0), CONT),
-        ("BACKGROUND", (4, 0), (4, 0), KIDS),
-        ("BACKGROUND", (0, 1), (-1, 1), PAPER),
-        ("BOX", (0, 0), (-1, -1), 0.7, LINE),
-        ("INNERGRID", (0, 0), (-1, -1), 0.35, LINE),
-        ("TOPPADDING", (0, 0), (-1, -1), 4),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+def easter_xmas_twin(data, s):
+    easter_rows = [[e["year"], n(e.get("in_person"))] for e in data["holidays"]["easter"]]
+    xmas_rows = [[e["year"], n(e.get("in_person_total"))] for e in data["holidays"]["christmas_eve"]]
+    left = [
+        Paragraph("Easter Sunday — in person", s["h2"]),
+        Paragraph("Included in weekly averages.", s["muted"]),
+        Spacer(1, 2),
+        styled_table(["Year", "Total"], easter_rows, s, col_widths=[1.5*inch, 1.85*inch]),
+    ]
+    right = [
+        Paragraph("Christmas Eve — in person", s["h2"]),
+        Paragraph("Shown as a fact — not in weekly averages.", s["muted"]),
+        Spacer(1, 2),
+        styled_table(["Year", "Total"], xmas_rows, s, col_widths=[1.5*inch, 1.85*inch]),
+    ]
+    twin = Table([[left, right]], colWidths=[3.55 * inch, 3.55 * inch])
+    twin.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0),
+        ("RIGHTPADDING", (0, 0), (0, 0), 8),
+        ("LEFTPADDING", (1, 0), (1, 0), 8),
+        ("RIGHTPADDING", (1, 0), (1, 0), 0),
     ]))
-    return t
+    return twin
 
 
 def build_page1(data, s):
@@ -265,8 +269,8 @@ def build_page1(data, s):
         Spacer(1, 5),
         Paragraph("1. Weekly Average Attendance — the number that matters most", s["h2"]),
         Paragraph(
-            "Ordinary Sunday <b>in-person</b> average for district comparison. "
-            "Snow closures and Christmas Eve/Day Sundays are left out so one cancelled week does not distort the average.",
+            "Ordinary Sunday <b>in-person</b> average. "
+            "Snow closures and Christmas Eve/Day Sundays are left out of this average.",
             s["body"],
         ),
         Spacer(1, 4),
@@ -279,23 +283,18 @@ def build_page1(data, s):
         ),
         Spacer(1, 2),
         yearly_table(data, s),
-        Spacer(1, 5),
-        Paragraph(f"{data['overview']['current_year']} average by service hour", s["h2"]),
-        Paragraph("How an ordinary Sunday typically breaks across Concord’s service times.", s["muted"]),
-        Spacer(1, 2),
-        hour_table(data, s),
         Spacer(1, 6),
+        Paragraph("2. Special Sundays (high-attendance moments)", s["h2"]),
         Paragraph(
-            "<b>How to read this page:</b> Start with the big weekly average. "
-            "Use the year table for trend. Use the hour table only for service-level detail.",
+            "Easter is included in weekly averages. Christmas Eve is reported separately and not mixed into the ordinary Sunday average.",
             s["body"],
         ),
+        Spacer(1, 2),
+        easter_xmas_twin(data, s),
     ]
 
 
 def build_page2(data, s):
-    easter_rows = [[e["year"], n(e.get("in_person"))] for e in data["holidays"]["easter"]]
-    xmas_rows = [[e["year"], n(e.get("in_person_total"))] for e in data["holidays"]["christmas_eve"]]
     holy_rows = []
     for e in data["holidays"]["holy_week"]:
         labels = {svc["service_label"]: svc["in_person"] for svc in e.get("services", [])}
@@ -319,65 +318,55 @@ def build_page2(data, s):
         for y in data["streaming"]["yearly"]
     ]
 
-    left_items = [
-        Paragraph("Easter Sunday — in person", s["h2"]),
-        styled_table(["Year", "Total"], easter_rows, s, col_widths=[1.4*inch, 2.0*inch]),
-        Spacer(1, 4),
-        Paragraph("Christmas Eve — in person", s["h2"]),
-        styled_table(["Year", "Total"], xmas_rows, s, col_widths=[1.4*inch, 2.0*inch]),
-    ]
-    right_items = [
+    left = [
         Paragraph("Online viewing avg / Sunday", s["h2"]),
+        Paragraph("Secondary context for reach — not a substitute for in-person counts.", s["muted"]),
+        Spacer(1, 2),
         styled_table(
             ["Year", "Online", "Boxcast", "YouTube"],
             stream_rows,
             s,
             col_widths=[0.75*inch, 0.85*inch, 0.9*inch, 0.9*inch],
         ),
-        Spacer(1, 4),
+    ]
+    right = [
         Paragraph("Ash Wednesday", s["h2"]),
         Paragraph(ash_txt, s["body"]),
     ]
-    twin = Table([[left_items, right_items]], colWidths=[3.55 * inch, 3.55 * inch])
+    twin = Table([[left, right]], colWidths=[3.7 * inch, 3.4 * inch])
     twin.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
-        ("RIGHTPADDING", (0, 0), (0, 0), 8),
-        ("LEFTPADDING", (1, 0), (1, 0), 8),
+        ("RIGHTPADDING", (0, 0), (0, 0), 10),
+        ("LEFTPADDING", (1, 0), (1, 0), 6),
         ("RIGHTPADDING", (1, 0), (1, 0), 0),
     ]))
 
     return [
         header_block(data, s),
         Spacer(1, 4),
-        Paragraph("2. Special Sundays &amp; services (facts — not weekly averages)", s["h2"]),
-        Paragraph(
-            "Important Concord moments. <b>Not mixed into the ordinary Sunday average</b> on page 1 "
-            "(except Easter, which is included in weekly averages).",
-            s["body"],
-        ),
-        Spacer(1, 3),
-        twin,
-        Spacer(1, 4),
-        Paragraph("Holy Week — in person", s["h2"]),
+        Paragraph("3. Holy Week — in person", s["h2"]),
+        Paragraph("Facts only — not included in ordinary Sunday averages.", s["muted"]),
+        Spacer(1, 2),
         styled_table(
             ["Year", "Stations", "Maundy Thu", "Good Friday", "Week Total"],
             holy_rows,
             s,
             col_widths=[1.1*inch, 1.4*inch, 1.5*inch, 1.5*inch, 1.25*inch],
         ),
-        Spacer(1, 5),
-        Paragraph("Quick notes for district review", s["h2"]),
+        Spacer(1, 6),
+        twin,
+        Spacer(1, 8),
+        Paragraph("Quick notes", s["h2"]),
         Paragraph(
             "• <b>Weekly average</b> = ordinary Sundays only.<br/>"
             "• <b>Left out of averages:</b> full snow closures, Christmas Eve, Christmas Day on Sunday, "
             "Ash Wednesday, Holy Week services.<br/>"
             "• <b>Kept in averages:</b> Easter Sunday and the Sunday after Christmas.<br/>"
-            "• Kids Worship (11am) is included in in-person totals.<br/>"
-            "• Full interactive report: digitaldogfood.com/CU/Attendance/",
+            "• Kids Worship (11am) is included in in-person totals.",
             s["body"],
         ),
-        Spacer(1, 8),
+        Spacer(1, 10),
         Paragraph(
             f"Generated {data['generated']} · Concord United Methodist Church · "
             f"Office records {data['overview']['date_start']} → {data['overview']['date_end']}",
@@ -397,7 +386,7 @@ def main():
         rightMargin=0.55 * inch,
         topMargin=0.4 * inch,
         bottomMargin=0.4 * inch,
-        title="Concord UMC — District Attendance Summary",
+        title="Concord UMC — Worship Attendance Summary",
         author="Concord United Methodist Church",
     )
     story = []
